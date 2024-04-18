@@ -1,0 +1,3 @@
+[submodule "lib/PdfPig.Rendering.Skia"]
+	path = lib/PdfPig.Rendering.Skia
+	url = https://github.com/zkvii/PdfPig.Rendering.Skia.git
