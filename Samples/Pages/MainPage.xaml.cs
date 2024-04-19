@@ -10,11 +10,11 @@ public sealed partial class MainPage : Page
     public MainPage()
     {
         this.InitializeComponent();
-        appTitleBar.Window = App.currentWindow;
+        AppTitleBar.Window = App.currentWindow;
         Instance = this;
 
         App.Current.JsonNavigationViewService.Initialize(NavView, NavFrame);
-        App.Current.JsonNavigationViewService.ConfigJson("DataModel/DemoData.json");
+        App.Current.JsonNavigationViewService.ConfigJson("DataModel/Caly.json");
         App.Current.JsonNavigationViewService.ConfigDefaultPage(typeof(HomeLandingPage));
         App.Current.JsonNavigationViewService.ConfigSettingsPage(typeof(SettingsPage));
         App.Current.JsonNavigationViewService.ConfigSectionPage(typeof(DemoSectionPage));
@@ -36,6 +36,6 @@ public sealed partial class MainPage : Page
 
     private void NavFrame_Navigated(object sender, NavigationEventArgs e)
     {
-        appTitleBar.IsBackButtonVisible = NavFrame.CanGoBack;
+        AppTitleBar.IsBackButtonVisible = NavFrame.CanGoBack;
     }
 }

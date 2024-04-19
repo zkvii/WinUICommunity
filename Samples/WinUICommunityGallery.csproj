@@ -43,6 +43,13 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <Content Remove="Assets\Caly\canvas.png" />
+    <Content Remove="Assets\Caly\PDF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="DataModel\Caly.json" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\dev\Components\Components.csproj" />
     <ProjectReference Include="..\dev\Win2D\Win2D.csproj" />
     <ProjectReference Include="..\dev\Core\Core.csproj" />
