@@ -1,16 +1,14 @@
 ﻿{
   "Groups": [
     {
-      "UniqueId": "Features",
-      "SectionId": "WinUICommunityGallery.Pages.mySectionPage",
+      "UniqueId": "WinUICommunityGallery.Pages.CanvasPage",
       "Title": "Canvas",
       "ImagePath": "ms-appx:///Assets/Caly/canvas.png",
       "ImageIconPath": "ms-appx:///Assets/Caly/canvas.png",
       "IsSpecialSection": false
     },
     {
-      "UniqueId": "Settings",
-      "SectionId": "WinUICommunityGallery.Pages.mySectionPage",
+      "UniqueId": "WinUICommunityGallery.Pages.PdfPage",
       "Title": "PDF",
       "SecondaryTitle": "Test SecondaryTitle",
       "ImagePath": "ms-appx:///Assets/Caly/pdf.png",

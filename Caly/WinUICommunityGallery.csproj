@@ -106,12 +106,16 @@
     <None Remove="Assets\Documents\PDFBOX-1869-4.pdf" />
     <None Remove="Assets\Documents\Watermarking PLMs by Combining.pdf" />
     <None Remove="DataModel\Caly.json" />
+    <None Remove="Pages\CanvasPage.xaml" />
+    <None Remove="Pages\PdfPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dev\Components\Components.csproj" />
-    <ProjectReference Include="..\dev\Win2D\Win2D.csproj" />
     <ProjectReference Include="..\dev\Core\Core.csproj" />
+    <ProjectReference Include="..\dev\Win2D\Win2D.csproj" />
     <ProjectReference Include="..\dev\LandingPages\LandingPages.csproj" />
+    <ProjectReference Include="..\WinPdfpig\src\UglyToad.PdfPig.DocumentLayoutAnalysis\UglyToad.PdfPig.DocumentLayoutAnalysis.csproj" />
+    <ProjectReference Include="..\WinPdfpig\src\UglyToad.PdfPig\UglyToad.PdfPig.csproj" />
   </ItemGroup>
 
   <!-- 
@@ -125,5 +129,17 @@
 
   <ItemGroup>
     <PackageReference Include="ColorCode.Core" Version="2.0.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\PdfPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\CanvasPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>
