@@ -1,0 +1,129 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>WinUICommunityGallery</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x86;x64;arm64</Platforms>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+    <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+    <UseWinUI>true</UseWinUI>
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <Version>6.7.0</Version>
+    <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
+    <GITHUB_ACTIONS>false</GITHUB_ACTIONS>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <WindowsPackageType Condition="'$(GITHUB_ACTIONS)'=='true'">None</WindowsPackageType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataModel\**\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ControlPagesSampleCode\**\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Strings\**\*.resw">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Assets\**\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <!-- 
+    Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+    Tools extension to be activated for this project even if the Windows App SDK Nuget
+    package has not yet been restored.
+  -->
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Assets\Caly\canvas.png" />
+    <Content Remove="Assets\Caly\PDF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\Documents\22060_A1_01_Plans-1.pdf" />
+    <None Remove="Assets\Documents\AcroFormsBasicFields.pdf" />
+    <None Remove="Assets\Documents\APISmap1.pdf" />
+    <None Remove="Assets\Documents\Apitron.PDF.Kit.Samples_patternFill.pdf" />
+    <None Remove="Assets\Documents\cat-genetics.pdf" />
+    <None Remove="Assets\Documents\cat-genetics_bobld.pdf" />
+    <None Remove="Assets\Documents\digitally_signed_3D_Portfolio.pdf" />
+    <None Remove="Assets\Documents\fseprd1102849.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-692307-2.zip-3.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-692564-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-692958-0.zip-2.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-693073-1.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-693120-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-693154-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-693295-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-693534-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-693664-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-694454-0.zip-36.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-695241-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-695269-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-695513-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-695681-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-696116-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-696178-1.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-696547-0.zip-10.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-696547-0.zip-7.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-696547-0.zip-9.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-696562-6.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-696720-1.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-696874-0.zip-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-696984-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-697047-1.zip-2.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-697234-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-697507-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-697682-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-697984-3.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-698168-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-698340-0.zip-3.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-698363-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-698471-3.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-698721-0.zip-6.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-698721-1.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-699178-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-699375-5.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-699488-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-699554-0.zip-4.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-700139-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-700288-1.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-700300-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-700370-2.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-700500-0.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-700931-0.7z-5.pdf" />
+    <None Remove="Assets\Documents\GHOSTSCRIPT-702013-1.pdf" />
+    <None Remove="Assets\Documents\gs-bugzilla694385.pdf" />
+    <None Remove="Assets\Documents\journal.pone.0196757.pdf" />
+    <None Remove="Assets\Documents\Judgement Document.pdf" />
+    <None Remove="Assets\Documents\PDFBOX-1869-4.pdf" />
+    <None Remove="Assets\Documents\Watermarking PLMs by Combining.pdf" />
+    <None Remove="DataModel\Caly.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dev\Components\Components.csproj" />
+    <ProjectReference Include="..\dev\Win2D\Win2D.csproj" />
+    <ProjectReference Include="..\dev\Core\Core.csproj" />
+    <ProjectReference Include="..\dev\LandingPages\LandingPages.csproj" />
+  </ItemGroup>
+
+  <!-- 
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution 
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if 
+    the Windows App SDK Nuget package has not yet been restored.
+  -->
+  <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ColorCode.Core" Version="2.0.15" />
+  </ItemGroup>
+</Project>

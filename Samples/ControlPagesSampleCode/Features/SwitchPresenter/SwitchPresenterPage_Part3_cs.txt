@@ -1,9 +1,0 @@
-﻿public enum Animal
-{
-    Cat,
-    Dog,
-    Bunny,
-    Llama,
-    Parrot,
-    Squirrel
-}

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<wuc:OptionsPageControl x:Class="WinUICommunityGallery.Examples.ControlExample"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:local="using:WinUICommunityGallery.Examples"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:wuc="using:WinUICommunity"
+                        Margin="10,0,10,15"
+                        VerticalAlignment="Top"
+                        FooterContentMargin="16,0,16,10"
+                        mc:Ignorable="d">
+    <wuc:OptionsPageControl.Resources>
+        <Thickness x:Key="ExpanderChevronMargin">0</Thickness>
+        <x:Double x:Key="ExpanderChevronButtonSize">0</x:Double>
+        <Thickness x:Key="ExpanderHeaderBorderThickness">0,1,0,0</Thickness>
+    </wuc:OptionsPageControl.Resources>
+    <wuc:OptionsPageControl.Bar>
+        <StackPanel>
+            <Button Width="32"
+                    Height="32"
+                    Padding="4"
+                    HorizontalAlignment="Center"
+                    Click="ToggleTheme_Click"
+                    Content="{wuc:FontIcon GlyphCode=E793,
+                                           FontSize=16}"
+                    Style="{StaticResource SubtleButtonStyle}"
+                    ToolTipService.ToolTip="Toggle theme" />
+            <Button x:Name="btnGoToDoc"
+                    Width="32"
+                    Height="32"
+                    Padding="4"
+                    HorizontalAlignment="Center"
+                    Click="GoToDoc_Click"
+                    Content="{wuc:FontIcon GlyphName=Document,
+                                           FontSize=16}"
+                    Style="{StaticResource SubtleButtonStyle}"
+                    ToolTipService.ToolTip="Go To Documentation" />
+        </StackPanel>
+    </wuc:OptionsPageControl.Bar>
+    <wuc:OptionsPageControl.BarFooter>
+        <StackPanel>
+            <Button x:Name="btnViewCode"
+                    Width="32"
+                    Height="32"
+                    Padding="0,0,0,2"
+                    HorizontalAlignment="Center"
+                    Click="ViewCode_Click"
+                    Style="{StaticResource AccentButtonStyle}"
+                    ToolTipService.ToolTip="View code">
+                <Button.Content>
+                    <PathIcon VerticalAlignment="Center"
+                              Data="{StaticResource CodeIcon}" />
+                </Button.Content>
+            </Button>
+        </StackPanel>
+    </wuc:OptionsPageControl.BarFooter>
+    <wuc:OptionsPageControl.Footer>
+        <Grid BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="0">
+            <Pivot x:Name="pivot"
+                   x:DefaultBindMode="OneWay">
+                <Pivot.Resources>
+                    <x:Double x:Key="PivotHeaderItemFontSize">14</x:Double>
+                </Pivot.Resources>
+                <PivotItem x:Name="PivotXAMLItem"
+                           Header="XAML">
+                    <local:SampleCodePresenter x:Name="XamlPresenter"
+                                               Code="{x:Bind Xaml}"
+                                               CodeSourceFile="{x:Bind XamlSource}" />
+                </PivotItem>
+                <PivotItem x:Name="PivotCSharpItem"
+                           Header="C#">
+                    <local:SampleCodePresenter x:Name="CSharpPresenter"
+                                               Code="{x:Bind CSharp}"
+                                               CodeSourceFile="{x:Bind CSharpSource}"
+                                               SampleType="CSharp" />
+                </PivotItem>
+            </Pivot>
+
+        </Grid>
+    </wuc:OptionsPageControl.Footer>
+</wuc:OptionsPageControl>
