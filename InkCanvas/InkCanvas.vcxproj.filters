@@ -25,9 +25,10 @@
     <None Include="Assets\icon.png">
       <Filter>Resources</Filter>
     </None>
-    <None Include="..\..\LICENSE" />
-    <None Include="README.md" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PropertySheet.props" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />

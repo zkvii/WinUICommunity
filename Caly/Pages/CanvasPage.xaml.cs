@@ -2,26 +2,17 @@
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 using System;
-using System.Numerics;
-using Microsoft.Graphics.Canvas;
-using Microsoft.Graphics.Canvas.Geometry;
-using Microsoft.Graphics.Canvas.UI;
 using Microsoft.UI;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
-using Microsoft.Graphics.Canvas.UI.Xaml;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.UI.Core;
 using Windows.UI.Input.Inking;
-using Microsoft.Graphics.Canvas.Text;
-using Windows.Foundation.Metadata;
-using Microsoft.VisualBasic.CompilerServices;
 using Microsoft.UI.Xaml.Controls;
 
 namespace WinUICommunityGallery.Pages;
@@ -30,12 +21,13 @@ namespace WinUICommunityGallery.Pages;
 /// An empty page that can be used on its own or navigated to within a Frame.
 /// </summary>
 ///
+
+
 public enum InkStrokeState
 {
-    UNDRAWED = 0,
-    DRAWED = 1,
-    SELECTED = 2,
-    DELETED = 3
+    UNSELECTED,
+    SELECTED, 
+    DELETED 
 }
 
 public class InkStrokeLine
@@ -50,56 +42,44 @@ public sealed partial class CanvasPage
 {
     private bool _isDrawing;
 
-    private readonly List<InkStrokeLine> _lines = new();
-
-    private InkStrokeLine _currentLine = new();
+    private PointerPoint _prevPoint;
 
 
     public CanvasPage()
     {
         InitializeComponent();
-        DrawCanvas.CreateResources += DrawCanvas_CreateResources;
+        // DrawCanvas.CreateResources += DrawCanvas_CreateResources ;
         DrawCanvas.PointerPressed += DrawCanvas_PointerPressed;
         DrawCanvas.PointerMoved += DrawCanvas_PointerMoved;
         DrawCanvas.PointerReleased += DrawCanvas_PointerReleased;
         DrawCanvas.PointerExited += DrawCanvas_PointerExited;
         DrawCanvas.PointerWheelChanged += DrawCanvas_PointerWheelChanged;
-        DrawCanvas.RegionsInvalidated += DrawCanvas_RegionsInvalidated;
+        // DrawCanvas.RegionsInvalidated += DrawCanvas_RegionsInvalidated;
         Unloaded += CanvasPage_Unloaded;
+        //disable default pen handler
+        ScrollViewerContainer.PointerPressed+=ScrollPointer_Pressed;
     }
 
-    private void DrawCanvas_CreateResources(CanvasVirtualControl sender, CanvasCreateResourcesEventArgs args)
+    private void ScrollPointer_Pressed(object sender, PointerRoutedEventArgs e)
     {
-    }
-
-    private void DrawCanvas_RegionsInvalidated(CanvasVirtualControl sender, CanvasRegionsInvalidatedEventArgs args)
-    {
-        foreach (var region in args.InvalidatedRegions)
+        if (e.Pointer.PointerDeviceType == PointerDeviceType.Pen)
         {
-            foreach (var line in _lines)
-            {
-                for (var i = 0; i < line.points.Count - 1; ++i)
-                {
-                    using var ds = sender.CreateDrawingSession(region);
-                    ds.DrawLine(line.points[i].Position.ToVector2(),
-                        line.points[i + 1].Position.ToVector2(),
-                        Colors.Black, line.points[i].Properties.Pressure * 2);
-                }
-            }
+            ScrollViewerContainer.Content.ManipulationMode &= ~ManipulationModes.System;
         }
     }
 
 
+
     private void CanvasPage_Unloaded(object sender, RoutedEventArgs e)
     {
-        DrawCanvas.RemoveFromVisualTree();
-        DrawCanvas = null;
+        // DrawCanvas.RemoveFromVisualTree();
+        // DrawCanvas = null;
     }
 
 
     private void DrawCanvas_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
     {
-        var ctrl = InputKeyboardSource.GetKeyStateForCurrentThread(Windows.System.VirtualKey.Control);
+     
     }
 
     private void DrawCanvas_PointerExited(object sender, PointerRoutedEventArgs e)
@@ -110,7 +90,6 @@ public sealed partial class CanvasPage
     private void DrawCanvas_PointerReleased(object sender, PointerRoutedEventArgs e)
     {
         _isDrawing = false;
-        _lines.Add(_currentLine);
     }
 
     private bool CheckPositionDistance(PointerPoint currentPoint, PointerPoint prevPoint)
@@ -127,21 +106,34 @@ public sealed partial class CanvasPage
         }
 
         var point = e.GetCurrentPoint(DrawCanvas);
+        if (CheckPositionDistance(point, _prevPoint))
+        {
+            var line= new Line
+            {
+                X1 = _prevPoint.Position.X,
+                Y1 = _prevPoint.Position.Y,
+                X2 = point.Position.X,
+                Y2 = point.Position.Y,
+                Stroke = new SolidColorBrush(Colors.Black),
+                StrokeThickness = _prevPoint.Properties.Pressure * 2
+            };
+            DrawCanvas.Children.Add(line);
+            _prevPoint = point;
 
-        _currentLine.points.Add(point);
-        DrawCanvas.Invalidate();
+        }
+
+
     }
 
     private void DrawCanvas_PointerPressed(object sender, PointerRoutedEventArgs e)
     {
         _isDrawing = true;
         //new line
-        _currentLine = new InkStrokeLine
-        {
-            points = []
-        };
-        var point = e.GetCurrentPoint(DrawCanvas);
-        _currentLine.points.Add(point);
-        _currentLine.state = InkStrokeState.UNDRAWED;
+        // _currentLine = new InkStrokeLine
+        // {
+        //     points = []
+        // };
+        _prevPoint= e.GetCurrentPoint(DrawCanvas);
+        // _currentLine.points.Add(_prevPoint);
     }
 }

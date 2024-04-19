@@ -12,10 +12,16 @@
 
     <Grid>
         <!-- <ScrollViewer ZoomMode="Enabled" MinZoomFactor="1.0"> -->
-            <xaml:CanvasVirtualControl x:Name="DrawCanvas" ClearColor="MintCream" >
-               
-            </xaml:CanvasVirtualControl>
+        <!-- <xaml:CanvasVirtualControl x:Name="DrawCanvas" ClearColor="MintCream" > -->
+        <!--     -->
+        <!-- </xaml:CanvasVirtualControl> -->
         <!-- </ScrollViewer> -->
-      
+        <ScrollView ZoomMode="Enabled" x:Name="ScrollViewerContainer" >
+
+            <Canvas x:Name="DrawCanvas" Background="Aqua">
+
+            </Canvas>
+        </ScrollView>
+
     </Grid>
 </Page>

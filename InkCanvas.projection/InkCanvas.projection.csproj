@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+
+    <Platform>AnyCPU</Platform>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AssemblyName>InkCanvas.Interop</AssemblyName>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+  </PropertyGroup>
+
+  <PropertyGroup>
+
+    <CsWinRTIncludes>InkCanvas</CsWinRTIncludes>
+    <!--Set output path for generated source files/projection dll to OutDir (defined in Directory.Build.props)-->
+    <CsWinRTGeneratedFilesDir>$(OutDir)</CsWinRTGeneratedFilesDir>
+    <BaseOutputPath>$(SolutionDir)output\$(MSBuildProjectName)\</BaseOutputPath>
+    <CSWinRTWindowsMetadata>local</CSWinRTWindowsMetadata>
+    <CsWinRTGenerateProjection>true</CsWinRTGenerateProjection>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Assets\**" />
+    <EmbeddedResource Remove="Assets\**" />
+    <None Remove="Assets\**" />
+  </ItemGroup>
+
+  <!-- CsWinRT input projects and assemblies -->
+  <ItemGroup>
+    <ProjectReference Include="..\InkCanvas\InkCanvas.vcxproj" />
+    <CSWinRTInputs Include="C:\Users\gjt\source\repos\WinUICommunity\output\InkCanvas.projection\Debug\net8.0-windows10.0.22621.0\*.winmd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.0.7" />
+  </ItemGroup>
+
+</Project>

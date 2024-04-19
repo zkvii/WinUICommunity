@@ -10,12 +10,16 @@
     <PublishProfile>win-$(Platform).pubxml</PublishProfile>
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
+    <SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
     <Version>6.7.0</Version>
     <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
     <GITHUB_ACTIONS>false</GITHUB_ACTIONS>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <WindowsPackageType Condition="'$(GITHUB_ACTIONS)'=='true'">None</WindowsPackageType>
+    <BaseOutputPath>$(SolutionDir)output\$(MSBuildProjectName)\</BaseOutputPath>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
@@ -33,6 +37,9 @@
     <None Include="Assets\**\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="Strings\**\*.resw">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <!-- 
     Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
@@ -114,10 +121,22 @@
     <ProjectReference Include="..\dev\Core\Core.csproj" />
     <ProjectReference Include="..\dev\Win2D\Win2D.csproj" />
     <ProjectReference Include="..\dev\LandingPages\LandingPages.csproj" />
+    <ProjectReference Include="..\InkCanvas.projection\InkCanvas.projection.csproj" />
     <ProjectReference Include="..\WinPdfpig\src\UglyToad.PdfPig.DocumentLayoutAnalysis\UglyToad.PdfPig.DocumentLayoutAnalysis.csproj" />
     <ProjectReference Include="..\WinPdfpig\src\UglyToad.PdfPig\UglyToad.PdfPig.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="$(OutDir)\..\..\..\..\InkCanvas\InkCanvas.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <!-- <PropertyGroup> -->
+  <!--   <PostBuildEvent> -->
+  <!--     copy /Y "$(SolutionDir)output\$(MSBuildProjectName)\InkCanvas.dll"  "$(SolutionDir)output\$(MSBuildProjectName)\$(OutDir)\InkCanvas.dll" -->
+  <!--   </PostBuildEvent> -->
+  <!-- </PropertyGroup> -->
   <!-- 
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution 
     Explorer "Package and Publish" context menu entry to be enabled for this project even if 
@@ -129,6 +148,7 @@
 
   <ItemGroup>
     <PackageReference Include="ColorCode.Core" Version="2.0.15" />
+    <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
