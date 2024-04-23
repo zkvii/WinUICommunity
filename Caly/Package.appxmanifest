@@ -16,7 +16,7 @@
 
   <Properties>
     <DisplayName>WinUICommunity Gallery</DisplayName>
-    <PublisherDisplayName>Mahdi Hosseini</PublisherDisplayName>
+    <PublisherDisplayName>zerkvii</PublisherDisplayName>
     <Logo>Assets\Store\StoreLogo.png</Logo>
   </Properties>
 
@@ -28,6 +28,15 @@
   <Resources>
     <Resource Language="x-generate"/>
   </Resources>
+  <!-- add following to Package.appxmanifest-->
+  <Extensions>
+    <Extension Category="windows.activatableClass.inProcessServer">
+      <InProcessServer>
+        <Path>InkCanvas.dll</Path>
+        <ActivatableClass ActivatableClassId="InkCanvas.Class" ThreadingModel="both" />
+      </InProcessServer>
+    </Extension>
+  </Extensions>
 
   <Applications>
     <Application Id="App"

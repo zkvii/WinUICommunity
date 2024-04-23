@@ -58,6 +58,7 @@ public sealed partial class CanvasPage
         Unloaded += CanvasPage_Unloaded;
         //disable default pen handler
         ScrollViewerContainer.PointerPressed+=ScrollPointer_Pressed;
+
     }
 
     private void ScrollPointer_Pressed(object sender, PointerRoutedEventArgs e)

@@ -19,6 +19,7 @@ public sealed partial class MainPage : Page
         App.Current.JsonNavigationViewService.ConfigSettingsPage(typeof(SettingsPage));
         App.Current.JsonNavigationViewService.ConfigSectionPage(typeof(DemoSectionPage));
         App.Current.JsonNavigationViewService.ConfigAutoSuggestBox(ControlsSearchBox);
+
     }
 
     private void appTitleBar_BackButtonClick(object sender, RoutedEventArgs e)

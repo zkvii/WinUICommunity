@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>InkCanvas</id>
+    <version>0.1.0-prerelease</version>
+    <authors>zerkvii</authors>
+    <description>A simple InkCanvas</description>
+    <dependencies>
+      <group targetFramework="net8.0-windows10.0.22621.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <!-- start from nuget path -->
+    <file src="..\..\output\InkCanvas.projection\Debug\net8.0-windows10.0.22621.0\InkCanvas.projection.dll" target="lib\net8.0-windows10.0.22621.0\InkCanvas.interop.dll"></file>
+    <file src="..\..\output\InkCanvas\InkCanvas.dll" target="lib\net8.0-windows10.0.22621.0\InkCanvas.dll"></file>
+    <!-- <file src="..\..\output\InkCanvas\InkCanvas.winmd" target="lib\net8.0-windows10.0.22621.0\InkCanvas.winmd"></file> -->
+
+  </files>
+</package>
