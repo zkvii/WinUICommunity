@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Platform>AnyCPU</Platform>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <RootNamespace>InkCanvas</RootNamespace>
+    <RootNamespace>InkCanvasControl</RootNamespace>
     <AssemblyName>InkCanvas.projection</AssemblyName>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <!-- <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch> -->
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
 
   <PropertyGroup>
 
-    <CsWinRTIncludes>InkCanvas;</CsWinRTIncludes>
+    <CsWinRTIncludes>InkCanvasControl;</CsWinRTIncludes>
     <!--Set output path for generated source files/projection dll to OutDir (defined in Directory.Build.props)-->
     <CsWinRTGeneratedFilesDir>$(OutDir)</CsWinRTGeneratedFilesDir>
     <CSWinRTWindowsMetadata>local</CSWinRTWindowsMetadata>
@@ -26,9 +26,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.0.7" />
+    <PackageReference Include="Microsoft.WindowsAppSdk" Version="1.5.240404000" />
+
   </ItemGroup>
+
+
   <ItemGroup>
-    <ProjectReference Include="..\InkCanvas\InkCanvas.vcxproj"  PrivateAssets="All"/>
+    <ProjectReference Include="..\InkCanvasControl\InkCanvasControl.vcxproj" />
   </ItemGroup>
 
   <!-- <PropertyGroup> -->

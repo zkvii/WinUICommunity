@@ -1,0 +1,8 @@
+﻿namespace InkCanvasControl
+{
+    [default_interface]
+    runtimeclass InkControl : Microsoft.UI.Xaml.Controls.UserControl
+    {
+        InkControl();
+    }
+}

@@ -32,8 +32,8 @@
   <Extensions>
     <Extension Category="windows.activatableClass.inProcessServer">
       <InProcessServer>
-        <Path>InkCanvas.dll</Path>
-        <ActivatableClass ActivatableClassId="InkCanvas.Class" ThreadingModel="both" />
+        <Path>InkCanvasControl.dll</Path>
+        <ActivatableClass ActivatableClassId="InkCanvasControl.InkControl" ThreadingModel="both" />
       </InProcessServer>
     </Extension>
   </Extensions>
