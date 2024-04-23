@@ -1,0 +1,3 @@
+[submodule "WinPdfpig"]
+	path = WinPdfpig
+	url = https://github.com/zkvii/WinPdfpig.git
